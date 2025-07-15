@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini CLI & Bluetooth - Q&A Summary</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-section {
+            background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid #4285f4;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .question::before {
+            content: "❓";
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .answer {
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .command {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            margin: 10px 0;
+            border: 2px solid #333;
+            position: relative;
+            overflow-x: auto;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .command::before {
+            content: "$ ";
+            color: #ffff00;
+            font-weight: bold;
+        }
+
+        .command-block {
+            background: #2d3748;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #4285f4;
+        }
+
+        .command-title {
+            color: #a0aec0;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .best-practices {
+            background: linear-gradient(45deg, #e8f5e8, #f0fff0);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #28a745;
+        }
+
+        .best-practices h4 {
+            color: #155724;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .best-practices h4::before {
+            content: "💡";
+            margin-right: 8px;
+        }
+
+        .best-practices ul {
+            color: #155724;
+            margin: 10px 0;
+        }
+
+        .best-practices li {
+            margin: 8px 0;
+        }
+
+        .alias-example {
+            background: #fff3cd;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 10px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .warning {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #dc3545;
+        }
+
+        .warning::before {
+            content: "⚠️ ";
+            font-weight: bold;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            counter-increment: step-counter;
+            margin: 15px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .step::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #4285f4;
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gemini CLI & Bluetooth - Q&A Summary</h1>
+
+        <div class="question-section">
+            <div class="question">Question 1: How can I ensure that Gemini CLI retains the chat context between terminal sessions?</div>
+            
+            <div class="answer">
+                <p>To retain chat context in Gemini CLI between terminal sessions, use named sessions. This allows you to resume your work seamlessly.</p>
+                
+                <div class="steps">
+                    <div class="step">
+                        <strong>To start a named session:</strong>
+                        <div class="command-block">
+                            <div class="command-title">Start a new named session</div>
+                            <div class="command">gemini --session my-project-session</div>
+                        </div>
+                        <p>This saves your conversation under a session name. You can close the terminal and return to the same session later.</p>
+                    </div>
+
+                    <div class="step">
+                        <strong>To resume a saved session:</strong>
+                        <div class="command-block">
+                            <div class="command-title">Resume an existing session</div>
+                            <div class="command">gemini --session my-project-session</div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <strong>To view existing sessions:</strong>
+                        <div class="command-block">
+                            <div class="command-title">List all sessions</div>
+                            <div class="command">gemini sessions list</div>
+                        </div>
+                    </div>
+
+                    <div class="step">
+                        <strong>Optional optimization:</strong>
+                        <p>Use the <span class="highlight">'/compress'</span> command before exiting to summarize and reduce context size, improving performance when you resume later.</p>
+                    </div>
+
+                    <div class="step">
+                        <strong>For convenience, create an alias:</strong>
+                        <div class="alias-example">
+                            <strong>Add to your shell configuration:</strong>
+                            <div class="command">alias gemdev='gemini --session dev-chat'</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="warning">
+                    Avoid starting Gemini CLI without the '--session' flag, as this will initiate a new session each time, discarding prior context.
+                </div>
+            </div>
+        </div>
+
+        <div class="question-section">
+            <div class="question">Question 2: Could you please explain the '/compress' command in Gemini CLI in more detail?</div>
+            
+            <div class="answer">
+                <p>The <span class="highlight">'/compress'</span> command in Gemini CLI is used to manage context efficiently in long-running conversations. It works by replacing the full conversation history with a high-level summary, allowing the system to retain the key points while minimizing token usage.</p>
+
+                <p>This is especially important because large language models have a limited context window (measured in tokens). As a conversation grows, it consumes more tokens, which can lead to performance degradation or forgotten earlier parts of the discussion.</p>
+
+                <p>When you run <span class="highlight">'/compress'</span>, Gemini generates a concise summary of the discussion and discards the full message history. This summary becomes the new base context.</p>
+
+                <div class="best-practices">
+                    <h4>Best practices for using compression:</h4>
+                    <ul>
+                        <li>Use <span class="highlight">'/compress'</span> when a topic or task is complete, or before switching to a new subject.</li>
+                        <li>Ensure that all key points you wish to retain are clearly mentioned before compressing.</li>
+                        <li>Avoid using it in the middle of a highly technical or ongoing thread unless necessary for performance.</li>
+                    </ul>
+                </div>
+
+                <p>This feature helps keep sessions efficient and focused while still preserving continuity through summarization.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
